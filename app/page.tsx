@@ -1,3 +1,4 @@
+import Footers from "./components/Footers";
 import { ProductRow } from "./components/ProductRows";
 
 export default function Home() {
@@ -23,6 +24,9 @@ export default function Home() {
             <ProductRow category="fonts" />
           </section>
         </div>
+      </section>
+      <section className="mt-[5rem]">
+        <Footers />
       </section>
     </>
   );

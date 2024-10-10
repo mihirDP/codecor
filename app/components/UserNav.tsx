@@ -58,7 +58,9 @@ export function UserNav({ email, name, userImage }: iAppProps) {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>GitHub</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="https://github.com/mihirDP/codecor.git">GitHub</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={"/billing"}>Billing</Link>
         </DropdownMenuItem>
