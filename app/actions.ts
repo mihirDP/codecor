@@ -2,11 +2,10 @@
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { type CategoryTypes } from "@prisma/client";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "./lib/db";
 import { stripe } from "./lib/stripe";
-import { redirect } from "next/navigation";
-import { use } from "react";
 
 export type State = {
   status: "error" | "success" | undefined;
@@ -162,7 +161,7 @@ export async function BuyProduct(formData: FormData) {
           product_data: {
             name: data?.name as string,
             description: data?.smallDescription,
-            images: data?.images,
+            images: data.images,
           },
         },
         quantity: 1,

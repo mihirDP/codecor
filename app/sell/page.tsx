@@ -1,7 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { SellForm } from "../components/form/Sellform";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { use } from "react";
+import { SellForm } from "../components/form/Sellform";
 
 export default async function SellRoute() {
   const { getUser } = getKindeServerSession();

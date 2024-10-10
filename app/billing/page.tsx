@@ -6,10 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import prisma from "../lib/db";
-import { Button } from "@/components/ui/button";
 import { CreateStripeAccountLink } from "../actions";
 import { Submitbutton } from "../components/Submitbutton";
+import prisma from "../lib/db";
 
 async function getData(userId: string) {
   const data = await prisma.user.findUnique({
