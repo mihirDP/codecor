@@ -1,7 +1,6 @@
 import prisma from "@/app/lib/db";
 import { stripe } from "@/app/lib/stripe";
 import { headers } from "next/headers";
-import { toast } from "sonner";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -17,8 +16,11 @@ export async function POST(req: Request) {
       process.env.STRIPE_CONNECT_WEBHOOK_SECRET as string
     );
   } catch (error: unknown) {
-    return new Response("webhook error", { status: 400 });
+    // You can log the error if needed
+    console.error("Webhook error:", error); // Log the error for debugging
+    return new Response("Webhook error", { status: 400 });
   }
+
   switch (event.type) {
     case "account.updated": {
       const account = event.data.object;
@@ -35,15 +37,16 @@ export async function POST(req: Request) {
               : true,
         },
       });
-      {
-        !data ? <p>No Data Available</p> : <p>{data}</p>;
-      }
 
-      break;
+      // Use the error variable here for error handling
+      if (!data) {
+        return new Response("No Data Available", { status: 404 });
+      } else {
+        return new Response(JSON.stringify(data), { status: 200 });
+      }
     }
-    default: {
-      console.log("Unhandled");
-    }
+    // Add additional cases as necessary
+    default:
+      return new Response("Unhandled event type", { status: 400 });
   }
-  return new Response(null, { status: 200 });
 }
